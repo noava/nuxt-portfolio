@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     ],
   },
 
+  nitro: {
+    preset: 'static',
+  },
+
   css: ['~/assets/css/main.css'],
 
   vite: {

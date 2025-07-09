@@ -46,38 +46,6 @@ Welcome to my personal portfolio! This project showcases some of my work as a de
 - `BentoRectangles.vue` - A component that displays a grid of rectangles with design and animation.
 - `ImageViewer.vue` - A modal component that displays images in a fullscreen slideshow. It uses Pinia to manage the state of the currently viewed image and provides navigation controls.
 
-## Setup and Installation
-
-1. Clone the repository:
-
-   ```sh
-   git clone https://github.com/noava/my-portfolio.git
-   ```
-
-2. Navigate into the project directory:
-
-   ```sh
-   cd my-portfolio
-   ```
-
-3. Install the dependencies:
-
-   ```sh
-   npm install     or      bun install
-   ```
-
-4. Run the development server:
-
-   ```sh
-   npm run dev     or      bun dev
-   ```
-
-5. Open your browser and go to:
-
-   ```sh
-   http://localhost:5173
-   ```
-
 ## Contact
 
 - **Email**: [noavadev@gmail.com](mailto:noavadev@gmail.com)
