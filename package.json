@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@tresjs/cientos": "^4.3.1",
     "@tresjs/nuxt": "4.0.0",
+    "gsap": "^3.13.0",
     "nuxt": "^3.17.6",
     "pinia": "^3.0.3",
     "tailwindcss": "^4.1.11",
