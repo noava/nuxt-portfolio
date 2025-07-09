@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --font-saira: "saira", sans-serif;
+
+  --color-light: #e4e2c4;
+  --color-background: #19191f;
+  --color-background-darker: #020206;
+  --color-card: #5a2f32;
+  --color-primary: #db8c74;
+  --color-secondary: #773438;
+  --color-accent: #cfa152;
+  --color-navbarfooter: #392022;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6, nav {
+    @apply font-black;
+    @apply italic;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  background-color: var(--color-background);
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  margin: 2px;
+}
+
+/* Selection Color */
+::selection {
+  background: var(--color-accent);
+}
