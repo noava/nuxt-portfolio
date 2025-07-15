@@ -51,7 +51,6 @@
 
     <div class="flex items-center mb-4">
       <input
-        checked
         id="checkbox-random_dark"
         type="checkbox"
         v-model="useRandomDark"
@@ -69,26 +68,47 @@
       v-model="charSet"
       class="w-full md:w-1/2 p-2 border border-secondary rounded-md bg-secondary/10 text-light placeholder:text-light/70 font-mono"
     />
-    <div class="flex flex-col md:flex-row mt-2">
-      <p class="text-sm text-light/70">
-        Use half-width characters for better results.
+    <div class="flex flex-col md:flex-row mt-2 text-light/70">
+      <p class="text-sm">Use half-width characters for better results.</p>
+      <p class="md:ms-2 text-sm">Order from light to dark.</p>
+      <p class="md:ms-2 text-sm">
+        (Default: "<span class="font-mono"> .:-=+*%@#XW</span>")
       </p>
-      <p class="md:ms-2 text-sm text-light/70">(Default: " .:-=+*%@#XW")</p>
     </div>
 
-    <div class="flex flex-row justify-center items-center mt-4 mb-16">
-      <ButtonsDynamicButton @click="generateAscii" button_text="Generate" />
-      <Icon
-        name="material-symbols:content-copy-outline"
-        class="text-5xl text-light mx-8 align-middle cursor-pointer"
-        :class="[
-          isClicked && asciiArt
-            ? 'scale-125 hover:text-accent'
-            : 'scale-110 hover:text-primary',
-        ]"
-        @click="copyToClipboard"
-        title="Copy to clipboard"
+    <div class="w-full flex flex-col md:flex-row mt-4 mb-16">
+      <ButtonsDynamicButton
+        @click="generateAscii"
+        button_text="Generate"
+        class="mr-4"
       />
+      <div class="flex flex-col max-md:mt-12">
+        <h2 class="text-xl md:ms-6 mb-4">Output:</h2>
+        <div class="flex w-full max-md:justify-around">
+          <Icon
+            name="material-symbols:content-copy-outline"
+            class="text-5xl text-light mx-6 align-middle cursor-pointer"
+            :class="[
+              isTextCopied && asciiArt
+                ? 'scale-125 hover:text-accent'
+                : 'scale-110 hover:text-primary',
+            ]"
+            @click="copyTextToClipboard"
+            title="Copy to clipboard"
+          />
+          <Icon
+            name="material-symbols:wall-art-outline"
+            class="text-5xl text-light mx-6 align-middle cursor-pointer"
+            :class="[
+              isImageCopied && asciiArt
+                ? 'scale-125 hover:text-accent'
+                : 'scale-110 hover:text-primary',
+            ]"
+            @click="copyCanvasToClipboard"
+            title="Copy as Image"
+          />
+        </div>
+      </div>
     </div>
 
     <canvas ref="canvasRef" class="hidden" />
@@ -112,9 +132,10 @@ const japCharSet = ref(
 const asciiArt = ref("");
 const asciiWidth = ref(100);
 const fileName = ref("No file selected");
-const useRandomDark = ref(true);
+const useRandomDark = ref(false);
 const invertOutput = ref(false);
-const isClicked = ref(false);
+const isTextCopied = ref(false);
+const isImageCopied = ref(false);
 
 let img;
 
@@ -148,7 +169,7 @@ const handleDrop = (e) => {
 
 const generateAscii = () => {
   const canvas = canvasRef.value;
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
   if (!img.width || !img.height) return;
 
@@ -210,11 +231,76 @@ const generateAscii = () => {
   asciiArt.value = output;
 };
 
-const copyToClipboard = () => {
+const copyTextToClipboard = () => {
   navigator.clipboard.writeText(asciiArt.value).then(() => {});
-  isClicked.value = true;
+  isTextCopied.value = true;
   setTimeout(() => {
-    isClicked.value = false;
+    isTextCopied.value = false;
+  }, 200);
+};
+
+const copyCanvasToClipboard = async () => {
+  const canvas = canvasRef.value;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const ascii = asciiArt.value || "";
+  const lines = ascii.split("\n");
+  const fontSize = 12;
+  const lineHeight = fontSize;
+  const charWidth = fontSize * 0.55;
+
+  const paddingPx = 2 * charWidth;
+  const borderPx = 1;
+
+  const maxLineWidth = Math.max(...lines.map((line) => line.length));
+
+  canvas.width = maxLineWidth * charWidth + 2 * (paddingPx + borderPx);
+  canvas.height = lines.length * lineHeight + 2 * (paddingPx + borderPx);
+
+  // Draw border rectangle (full canvas)
+  ctx.fillStyle = "#db8c74"; // border color
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw padding background (inside border)
+  ctx.fillStyle = "#221b22"; // background color
+  ctx.fillRect(
+    borderPx,
+    borderPx,
+    canvas.width - 2 * borderPx,
+    canvas.height - 2 * borderPx
+  );
+
+  // Draw the ASCII text inside padding+border offset
+  ctx.fillStyle = "#e4e2c4";
+  ctx.font = `${fontSize}px monospace`;
+  ctx.textBaseline = "top";
+
+  const startX = borderPx + paddingPx;
+  const startY = borderPx + paddingPx + charWidth; // Adjusted for better vertical centering
+
+  lines.forEach((line, i) => {
+    ctx.fillText(line, startX, startY + i * lineHeight);
+  });
+
+  // Convert to blob and copy to clipboard
+  try {
+    const blob = await new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(blob), "image/png");
+    });
+
+    if (!blob) throw new Error("Failed to convert canvas to blob");
+
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+    console.log("ASCII image copied to clipboard!");
+  } catch (err) {
+    console.error("Failed to copy ASCII image to clipboard:", err);
+  }
+
+  isImageCopied.value = true;
+  setTimeout(() => {
+    isImageCopied.value = false;
   }, 200);
 };
 </script>
