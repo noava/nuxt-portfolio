@@ -116,7 +116,10 @@ const useRandomDark = ref(true);
 const invertOutput = ref(false);
 const isClicked = ref(false);
 
-let img = new Image();
+let img;
+onMounted(() => {
+  img = new Image();
+});
 
 const handleFile = (file) => {
   fileName.value = file.name;
