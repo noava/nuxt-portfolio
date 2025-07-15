@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center p-8 z-50 mx-auto"
+    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center py-8 px-2 z-50 mx-auto"
   >
     <RouterLink
       to="/"
@@ -43,6 +43,15 @@
       </RouterLink>
       <RouterLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
+        to="/art-gen"
+        >Art Gen.
+        <Icon
+          class="align-middle text-3xl lg:text-5xl"
+          name="material-symbols:wall-art-outline"
+        />
+      </RouterLink>
+      <RouterLink
+        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="#contact"
         >Contact
         <Icon
@@ -67,7 +76,7 @@
         <Icon
           v-if="weatherIcon"
           class="text-3xl lg:text-5xl align-middle ms-4 me-2"
-          :name="`material-symbols:${weatherIcon}-outline`"
+          :name="`material-symbols:${weatherIcon}`"
         />
       </div>
     </div>
@@ -95,23 +104,23 @@ const weatherIcon = ref("");
 
 // MET API to Google Material Icons
 const symbolCodeToIcon = {
-  clearsky: "wb-sunny",
-  clearsky_day: "wb-sunny",
-  clearsky_night: "bedtime",
-  partlycloudy: "cloud",
-  partlycloudy_day: "partly-cloudy-day",
-  partlycloudy_night: "partly-cloudy-night",
-  cloudy: "filter-drama",
+  clearsky: "wb-sunny-outline",
+  clearsky_day: "wb-sunny-outline",
+  clearsky_night: "bedtime-outline",
+  partlycloudy: "cloud-outline",
+  partlycloudy_day: "partly-cloudy-day-outline",
+  partlycloudy_night: "cloud-outline",
+  cloudy: "filter-drama-outline",
   rain: "rainy",
   lightrain: "rainy-light",
   heavyrain: "rainy-heavy",
-  snow: "weather-snowy",
-  lightsnow: "weather-snowy",
-  heavysnow: "weather-mix",
-  thunderstorm: "thunderstorm",
-  fair_night: "bedtime",
-  fair_day: "wb-sunny",
-  fog: "foggy",
+  snow: "weather-snowy-outline",
+  lightsnow: "weather-snowy-outline",
+  heavysnow: "weather-mix-outline",
+  thunderstorm: "thunderstorm-outline",
+  fair_night: "bedtime-outline",
+  fair_day: "wb-sunny-outline",
+  fog: "foggy-outline",
 };
 
 onMounted(() => {
