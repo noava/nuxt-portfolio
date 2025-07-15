@@ -18,7 +18,7 @@
         src="../assets/svg/N-wiff-stars.svg"
       />
       <p
-        class="text-background font-medium text-lg lg:text-xl leading-relaxed m-4 pt-0"
+        class="text-background font-medium text-lg lg:text-xl leading-relaxed m-4 pt-0 my-auto"
       >
         <b class="text-2xl">Hei!</b> :&#41; <br />
         My name is <b>Niklas Vezina</b>, and I have a bachelor degree in
@@ -35,7 +35,7 @@
         Whether it's developing a user interface or combining elements to create
         a poster or these cards:
       </p>
-      <div class="grid place-items-center h-[16rem] relative">
+      <div class="grid place-items-center h-[16rem] my-auto relative">
         <img
           v-for="(image, index) in images"
           :key="index"
@@ -54,31 +54,45 @@
         />
       </div>
     </div>
-    <div
-      class="row-span-2 col-start-1 row-start-8 bg-primary rounded h-48 overflow-hidden relative pointer-events-none"
-    >
+    <div class="row-span-6 col-start-1 row-start-3">
       <div
-        v-for="(noava_line, index) in noava_lines"
-        :key="index"
-        class="text-[1.6rem] font-black leading-4 text-background rotate-[20deg] whitespace-nowrap absolute left-[-2em]"
-        :style="{ top: `${index * 18 - 90}%` }"
+        class="bg-secondary aspect-[521/768] rounded p-2 flex justify-center items-center"
       >
-        NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA
+        <NuxtImg
+          class="w-full h-auto object-cover rounded"
+          src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp"
+          @click="
+            imageStore.selectImage(
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp'
+            )
+          "
+        />
+      </div>
+      <div class="p-4">
+        <span class="text-xl leading-relaxed"
+          >This <b>website</b> is made using vue, gsap, typescript, supabase,
+          pinia and tailwindcss. Check out the repo
+          <a
+            class="text-accent font-bold"
+            href="https://github.com/noava/my-portfolio"
+            >here</a
+          >.
+        </span>
+      </div>
+      <div
+        class="bg-primary rounded h-48 overflow-hidden relative pointer-events-none"
+      >
+        <div
+          v-for="(noava_line, index) in noava_lines"
+          :key="index"
+          class="text-[1.6rem] font-black leading-4 text-background rotate-[20deg] whitespace-nowrap absolute left-[-2em]"
+          :style="{ top: `${index * 18 - 90}%` }"
+        >
+          NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA
+        </div>
       </div>
     </div>
-    <div
-      class="row-span-4 col-start-1 row-start-3 bg-secondary rounded p-2 flex justify-center items-center"
-    >
-      <img
-        class="w-full object-cover rounded"
-        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp"
-        @click="
-          imageStore.selectImage(
-            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp'
-          )
-        "
-      />
-    </div>
+
     <div class="max-lg:hidden col-span-2 col-start-2 row-start-3">
       <!-- empty long -->
     </div>
@@ -86,7 +100,7 @@
       <!-- empty short -->
     </div>
     <div
-      class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-[32rem] lg:h-[56rem]"
+      class="max-lg:hidden row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-[32rem] lg:h-[56rem]"
     >
       <div
         class="size-full bg-fixed bg-cover bg-center rounded lg:hover:scale-100"
@@ -96,47 +110,38 @@
       ></div>
     </div>
 
-    <div class="col-start-1 row-start-7 p-4">
-      <span class="text-xl leading-relaxed"
-        >This <b>website</b> is made using vue, gsap, typescript, supabase,
-        pinia and tailwindcss. Check out the repo
-        <a
-          class="text-accent font-bold"
-          href="https://github.com/noava/my-portfolio"
-          >here</a
-        >.
-      </span>
-    </div>
-    <div
-      class="max-lg:hidden row-span-7 col-start-4 row-start-1 bg-secondary rounded flex items-center justify-center pointer-events-none"
-    >
-      <span
-        class="text-[17rem] rotate-90 text-background font-black italic leading-none"
-        >NOAVA</span
-      >
-    </div>
-    <div
-      class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]"
-    >
+    <div class="row-span-10 col-start-4 row-start-1 space-y-4">
       <div
-        class="flex items-center justify-center relative size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
+        class="max-lg:hidden h-[60rem] bg-secondary rounded flex items-center justify-center pointer-events-none"
+      >
+        <span
+          class="text-[15rem] rotate-90 text-background font-black italic leading-none"
+          >NOAVA</span
+        >
+      </div>
+      <div
+        class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]"
       >
         <div
-          class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"
-        ></div>
-        <div
-          class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"
-        ></div>
-        <img
-          class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
-          src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
-          alt="Poster of Cowboy Bebop I've designed"
-          @click="
-            imageStore.selectImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
-            )
-          "
-        />
+          class="flex items-center justify-center relative size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
+        >
+          <div
+            class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"
+          ></div>
+          <div
+            class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"
+          ></div>
+          <NuxtImg
+            class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
+            src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
+            alt="Poster of Cowboy Bebop I've designed"
+            @click="
+              imageStore.selectImage(
+                'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
+              )
+            "
+          />
+        </div>
       </div>
     </div>
   </div>
