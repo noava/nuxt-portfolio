@@ -12,12 +12,14 @@
         @drop.prevent="handleDrop"
         class="block w-full max-w-md border-2 border-dashed bg-secondary/10 border-primary rounded-md p-6 text-center text-light/90 hover:text-light transition cursor-pointer"
       >
-        <input
-          type="file"
-          accept=".svg,.png,.jpg,.jpeg,.webp"
-          @change="onFileChange"
-          class="hidden"
-        />
+        <ClientOnly>
+          <input
+            type="file"
+            accept=".svg,.png,.jpg,.jpeg,.webp"
+            @change="onFileChange"
+            class="hidden"
+          />
+        </ClientOnly>
         <p class="mb-2">Drag and drop an image here</p>
         <p class="text-sm text-light/70">or click to select one</p>
       </label>
@@ -116,7 +118,10 @@ const useRandomDark = ref(true);
 const invertOutput = ref(false);
 const isClicked = ref(false);
 
-let img = new Image();
+let img;
+onMounted(() => {
+  img = new Image();
+});
 
 const handleFile = (file) => {
   fileName.value = file.name;
