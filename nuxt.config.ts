@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      ignore: ['/art-gen'],
+      ignore: ['/art-gen', '/'],
     },
   },
 
