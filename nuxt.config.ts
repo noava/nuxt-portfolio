@@ -19,9 +19,6 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'static',
-    prerender: {
-      ignore: ['/art-gen'],
-    },
   },
 
   css: ['~/assets/css/main.css'],
