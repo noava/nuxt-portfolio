@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxtjs/supabase', '@pinia/nuxt', '@tresjs/nuxt'],
+  modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxtjs/supabase', '@pinia/nuxt', '@tresjs/nuxt', 'nuxt-umami'],
 
   fonts: {
     families: [
@@ -32,5 +32,12 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
     types: false,
+  },
+
+  umami: {
+    id: `${process.env.UMAMI_WEBSITE_ID}`,
+    host: `${process.env.UMAMI_HOST}`,
+    autoTrack: true,
+    enabled: process.env.UMAMI_IGNORE != 'true',
   },
 })

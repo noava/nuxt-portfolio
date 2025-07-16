@@ -22,6 +22,11 @@
       alt="Fullscreen Image"
       class="rounded-2xl max-w-full max-h-full p-2"
     />
+    <div class="md:hidden flex justify-center absolute bottom-20">
+      <span class="mt-4 text-light/60"
+        >Swipe to navigate <Icon name="material-symbols:swipe" />
+      </span>
+    </div>
     <button
       class="max-lg:hidden absolute right-20 text-light p-20"
       @click.stop="imageStore.nextImage"

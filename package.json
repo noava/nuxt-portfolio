@@ -20,6 +20,7 @@
     "@tresjs/nuxt": "4.0.0",
     "gsap": "^3.13.0",
     "nuxt": "^3.17.6",
+    "nuxt-umami": "3.2.0",
     "pinia": "^3.0.3",
     "tailwindcss": "^4.1.11",
     "three": ">=0.133",
