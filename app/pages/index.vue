@@ -33,26 +33,20 @@ import CrewBadgeProject from "../components/projects/CrewBadge.vue";
 
 const supabase = useSupabaseClient();
 
-const projects = ref<{ id: number; title: string }[]>([]);
-
-onMounted(async () => {
-  await getAllProjects();
-});
-
 // Gets all projects with their IDs
-const getAllProjects = async () => {
+const { data: projects, error } = await useAsyncData("projects", async () => {
   const { data, error } = await supabase
     .from("projects")
     .select("id, title")
     .order("id", { ascending: true });
+
   if (error) {
     console.error("Error fetching projects:", error);
-    return;
+    return [];
   }
-  if (data) {
-    projects.value = data;
-  }
-};
+
+  return data;
+});
 
 // Dynamically assign components. Add cases for each custom component
 const getComponentByTitle = (title: string) => {
