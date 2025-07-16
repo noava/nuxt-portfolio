@@ -29,7 +29,10 @@
         </p>
       </div>
     </div>
-    <h2 class="mt-4 text-xl">Resolution (ASCII width):</h2>
+    <div class="flex flex-row items-center gap-4 mt-4">
+      <h2 class="text-xl">Resolution (ASCII width):</h2>
+      <span class="text-light">{{ asciiWidth }} px</span>
+    </div>
     <input
       type="range"
       min="40"
@@ -57,7 +60,7 @@
         class="appearance-none min-w-6 size-6 rounded-lg pb-1 bg-primary relative transition-all duration-150 flex items-center justify-center before:content-[''] before:absolute before:w-4 before:h-2 before:border-b-3 before:border-l-4 before:border-background before:rotate-[-45deg] before:scale-0 checked:before:scale-100"
       />
       <label for="checkbox-random_dark" class="ms-2 text-sm font-medium">
-        Randomize Japanese Katagana characters on dark spots. Works best with
+        Randomize Japanese Katakana characters on dark spots. Works best with
         fully dark objects.
       </label>
     </div>
