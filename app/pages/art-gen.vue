@@ -118,9 +118,14 @@ const useRandomDark = ref(true);
 const invertOutput = ref(false);
 const isClicked = ref(false);
 
-let img;
+let img = null;
+
+definePageMeta({
+  ssr: false,
+});
+
 onMounted(() => {
-  img = new Image();
+  img = new window.Image();
 });
 
 const handleFile = (file) => {
