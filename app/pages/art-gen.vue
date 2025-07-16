@@ -79,7 +79,10 @@
     </div>
 
     <div class="flex flex-row justify-center items-center mt-4 mb-16">
-      <ButtonsDynamicButton @click="generateAscii" button_text="Generate" />
+      <ButtonsDynamicButton
+        @click="() => uploadedImg && generateAscii(uploadedImg)"
+        button_text="Generate"
+      />
       <Icon
         name="material-symbols:content-copy-outline"
         class="text-5xl text-light mx-8 align-middle cursor-pointer"
@@ -117,24 +120,17 @@ const fileName = ref("No file selected");
 const useRandomDark = ref(true);
 const invertOutput = ref(false);
 const isClicked = ref(false);
-
-let img = null;
-
-definePageMeta({
-  ssr: false,
-});
-
-onMounted(() => {
-  img = new window.Image();
-});
+const uploadedImg = ref(null);
 
 const handleFile = (file) => {
   fileName.value = file.name;
 
   const reader = new FileReader();
   reader.onload = (event) => {
+    const img = new Image();
     img.onload = () => {
-      generateAscii();
+      uploadedImg.value = img;
+      generateAscii(img);
     };
     img.src = event.target.result;
   };
@@ -152,7 +148,7 @@ const handleDrop = (e) => {
   if (file) handleFile(file);
 };
 
-const generateAscii = () => {
+const generateAscii = (img) => {
   const canvas = canvasRef.value;
   const ctx = canvas.getContext("2d");
 
