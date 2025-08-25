@@ -27,8 +27,8 @@
       <span class="text-xl block py-10 lg:py-20"
         >You could press <b>continue</b> and navigate throught the form or you
         can reach me through this email:
-        <a class="text-accent" href="mailto:noavadev@gmail"
-          >noavadev@gmail.com</a
+        <a class="text-accent" href="mailto:contact@noava.dev"
+          >contact@noava.dev</a
         >
       </span>
       <DynamicButton
@@ -313,7 +313,7 @@ const removeHash = () => {
   router.replace({
     path: route.path,
     query: route.query,
-    hash: '',
+    hash: "",
   });
 };
 
@@ -324,7 +324,6 @@ watch(
   },
   { immediate: true }
 );
-
 
 const closeFirstModal = () => {
   isFirstModalOpen.value = false;
