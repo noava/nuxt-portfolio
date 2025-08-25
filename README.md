@@ -48,5 +48,5 @@ Welcome to my personal portfolio! This project showcases some of my work as a de
 
 ## Contact
 
-- **Email**: [noavadev@gmail.com](mailto:noavadev@gmail.com)
+- **Email**: [contact@noava.dev](mailto:contact@noava.dev)
 - **LinkedIn**: [linkedin.com/in/niklas-vezina](https://linkedin.com/in/niklas-vezina)
