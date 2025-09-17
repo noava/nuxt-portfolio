@@ -120,19 +120,19 @@
         >
       </div>
       <div
-        class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]"
+        class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[28rem]"
       >
         <div
           class="flex items-center justify-center relative size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
         >
           <div
-            class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"
+            class="absolute top-10 h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"
           ></div>
           <div
-            class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"
+            class="absolute top-10 h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"
           ></div>
           <NuxtImg
-            class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
+            class="absolute top-10 h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
             src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
             alt="Poster of Cowboy Bebop I've designed"
             @click="
@@ -141,6 +141,11 @@
               )
             "
           />
+          <div class="absolute bottom-4 text-center">
+            <p class="text-background/80 italic font-semibold">
+              View more posters by clicking the poster.
+            </p>
+          </div>
         </div>
       </div>
     </div>
