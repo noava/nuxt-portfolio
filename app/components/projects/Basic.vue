@@ -6,11 +6,11 @@
   <div
     v-if="!isLoading"
     :class="id % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'"
-    class="lg:flex lg:justify-between lg:items-start my-16"
+    class="lg:flex lg:justify-between lg:items-start my-16 px-2"
     :style="{ color: title_color }"
   >
     <div
-      :class="id % 2 === 0 ? 'lg:ml-40 lg:text-left' : 'lg:mr-40 lg:text-right'"
+      :class="id % 2 === 0 ? 'lg:ml-20 lg:text-left' : 'lg:mr-20 lg:text-right'"
       class="lg:mt-20 mx-4"
     >
       <h1
@@ -23,11 +23,12 @@
         {{ undertitle }}
       </h2>
       <p
-        class="text-2xl my-6 lg:my-12 lg:leading-relaxed"
+        class="text-lg lg:text-2xl my-6 lg:my-12 lg:leading-relaxed"
         v-html="description"
         :style="{ color: description_color }"
       ></p>
       <DynamicButton
+        class="w-full lg:w-auto mb-8"
         v-if="button_text"
         :button_text="button_text"
         :button_link="button_link"
@@ -36,7 +37,7 @@
         :button_border_color="button_border_color"
       />
       <p
-        class="text-2xl mt-12 mb-4"
+        class="text-lg lg:text-2xl my-4 max-sm:text-right"
         :class="id % 2 === 0 ? 'text-left' : 'text-right'"
         :style="{ color: undertitle_color }"
       >

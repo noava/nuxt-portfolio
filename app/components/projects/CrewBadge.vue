@@ -5,9 +5,9 @@
 
   <div
     v-if="!isLoading"
-    class="lg:flex lg:justify-between lg:items-start my-16"
+    class="lg:flex lg:justify-between lg:items-start my-16 px-2"
   >
-    <div class="lg:mt-20 lg:ml-40 mx-4">
+    <div class="lg:mt-20 lg:ml-20 mx-4">
       <h1
         class="text-[14vw]/[15vw] lg:text-8xl"
         :style="{ color: title_color }"
@@ -23,17 +23,17 @@
         class="max-w-full my-6 lg:my-12"
       />
       <p
-        class="text-2xl my-4 lg:my-12 lg:leading-relaxed"
+        class="text-lg lg:text-2xl my-4 lg:my-12 lg:leading-relaxed"
         :style="{ color: description_color }"
         v-html="description"
       ></p>
-      <p class="text-2xl mt-12" :style="{ color: undertitle_color }">
+      <p class="text-lg lg:text-2xl my-4" :style="{ color: undertitle_color }">
         {{ date }}
       </p>
       <img
         src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/CrewBadge/Electronic_Box.svg"
         alt="SVG of electronic box"
-        class="w-[80%] ml-8 mt-[-4rem] mb-4"
+        class="w-[80%] ml-auto mt-[-4rem] mb-4"
       />
     </div>
     <img

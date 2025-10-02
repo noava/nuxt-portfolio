@@ -13,10 +13,24 @@
     <div
       class="row-span-3 col-start-3 row-start-4 bg-primary rounded p-2 flex flex-col justify-between"
     >
-      <img
-        class="max-lg:hidden h-20 m-auto my-8 fill-orange-500"
-        src="../assets/svg/N-wiff-stars.svg"
-      />
+      <div class="flex items-center justify-center my-6">
+        <svg
+          width="134"
+          height="86"
+          viewBox="0 0 134 86"
+          class="animate-draw text-secondary"
+        >
+          <path
+            class="draw-path"
+            xmlns="http://www.w3.org/2000/svg"
+            d="M98.4989 67.0006C-29.5005 -17.5 -8.77708 161.639 35.5 41C84.4172 -92.2813 29.4989 163 72.9989 45.0001C85.0741 10.5716 108.018 -5.0568 111.518 8.5002C115.018 22.0572 120.518 1.5572 132.563 10.6895"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"
+          />
+        </svg>
+      </div>
       <p
         class="text-background font-medium text-lg lg:text-xl leading-relaxed m-4 pt-0 my-auto"
       >
@@ -70,7 +84,7 @@
       </div>
       <div class="p-4">
         <span class="text-xl leading-relaxed"
-          >This <b>website</b> is made using vue, gsap, typescript, supabase,
+          >This <b>website</b> is made using nuxt, gsap, typescript, supabase,
           pinia and tailwindcss. Check out the repo
           <a
             class="text-accent font-bold"
@@ -79,16 +93,20 @@
           >.
         </span>
       </div>
-      <div
-        class="bg-primary rounded h-48 overflow-hidden relative pointer-events-none"
-      >
+      <div class="bg-primary rounded h-48 overflow-hidden">
         <div
-          v-for="(noava_line, index) in noava_lines"
-          :key="index"
-          class="text-[1.6rem] font-black leading-4 text-background rotate-[20deg] whitespace-nowrap absolute left-[-2em]"
-          :style="{ top: `${index * 18 - 90}%` }"
+          class="relative pointer-events-none rotate-[20deg] h-full -left-[2em] -top-[4em] space-y-5"
         >
-          NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA
+          <div
+            v-for="(noava_line, index) in noava_lines"
+            :key="index"
+            class="scrolling-noava text-[1.6rem] font-black leading-4 text-background whitespace-nowrap"
+            :style="{
+              animationDuration: `${20 + index * 4}s`,
+            }"
+          >
+            NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA
+          </div>
         </div>
       </div>
     </div>
@@ -112,12 +130,19 @@
 
     <div class="row-span-10 col-start-4 row-start-1 space-y-4">
       <div
-        class="max-lg:hidden h-[60rem] bg-secondary rounded flex items-center justify-center pointer-events-none"
+        class="max-lg:hidden h-[60rem] bg-secondary rounded flex items-center justify-center"
       >
         <span
-          class="text-[15rem] rotate-90 text-background font-black italic leading-none"
-          >NOAVA</span
+          class="text-[15rem] rotate-90 font-black italic leading-none inline-flex"
         >
+          <span
+            v-for="(letter, index) in 'NOAVA'.split('')"
+            :key="index"
+            class="text-background transition-transform duration-300 hover:text-primary hover:scale-125"
+            :style="{ animationDelay: `${index * 100}ms` }"
+            >{{ letter }}</span
+          >
+        </span>
       </div>
       <div
         class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[28rem]"
@@ -132,7 +157,7 @@
             class="absolute top-10 h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"
           ></div>
           <NuxtImg
-            class="absolute top-10 h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
+            class="absolute top-10 h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-transform"
             src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
             alt="Poster of Cowboy Bebop I've designed"
             @click="
@@ -154,7 +179,7 @@
 
 <script setup lang="ts">
 const imageStore = useImageStore();
-const noava_lines = ref(Array(16).fill(""));
+const noava_lines = ref(Array(9).fill(""));
 const images = ref([
   {
     src: "https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/Song-selected.svg",
@@ -180,3 +205,30 @@ const drawCard = (index: number) => {
   }
 };
 </script>
+
+<style scoped>
+.scrolling-noava {
+  animation: scroll 100s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.draw-path {
+  stroke-dasharray: 435;
+  stroke-dashoffset: 435;
+  animation: draw 4s ease-in-out infinite alternate;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+</style>
