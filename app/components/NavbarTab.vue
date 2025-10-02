@@ -1,17 +1,17 @@
 <template>
   <nav
-    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center py-8 px-2 z-50 mx-auto"
+    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center py-8 px-2 z-50 mx-auto pointer-events-none"
   >
     <RouterLink
       to="/"
-      class="text-5xl font-black bg-navbarfooter/50 backdrop-blur rounded-full px-6 py-2 hover:tracking-widest hover:saturate-[300%]"
+      class="text-5xl font-black bg-navbarfooter/50 backdrop-blur rounded-full px-6 py-2 hover:tracking-widest hover:saturate-[300%] pointer-events-auto"
       >Noava</RouterLink
     >
 
     <div
       :class="[
         isMenuOpen ? 'block' : 'hidden',
-        'absolute top-24 right-3 lg:right-0 bg-navbarfooter/50 backdrop-blur w-[15rem] lg:w-[23rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4',
+        'absolute top-24 right-3 lg:right-0 bg-navbarfooter/50 backdrop-blur w-auto p-4 shadow-lg rounded-lg text-right text-3xl lg:text-4xl space-y-2 lg:space-y-4 pointer-events-auto',
       ]"
       @click="closeMenu"
     >
@@ -81,7 +81,7 @@
       </div>
     </div>
     <div
-      class="cursor-pointer bg-navbarfooter/50 backdrop-blur rounded-full p-2 hover:saturate-[300%]"
+      class="cursor-pointer bg-navbarfooter/50 backdrop-blur rounded-full p-2 hover:saturate-[300%] pointer-events-auto"
       @click="toggleMenu"
     >
       <Icon
