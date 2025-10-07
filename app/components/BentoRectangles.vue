@@ -68,7 +68,7 @@
         />
       </div>
     </div>
-    <div class="row-span-6 col-start-1 row-start-3">
+    <div class="max-lg:hidden row-span-6 col-start-1 row-start-3">
       <div
         class="bg-secondary aspect-[521/768] rounded p-2 flex justify-center items-center"
       >
@@ -118,14 +118,17 @@
       <!-- empty short -->
     </div>
     <div
-      class="max-lg:hidden row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-[32rem] lg:h-[56rem]"
+      class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-fit"
     >
-      <div
-        class="size-full bg-fixed bg-cover bg-center rounded lg:hover:scale-100"
-        style="
-          background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/tutrle.webp);
+      <NuxtImg
+        class="w-full h-auto object-cover rounded"
+        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp"
+        @click="
+          imageStore.selectImage(
+            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp'
+          )
         "
-      ></div>
+      />
     </div>
 
     <div class="row-span-10 col-start-4 row-start-1 space-y-4">
