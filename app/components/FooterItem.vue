@@ -7,20 +7,24 @@
         class="flex max-lg:flex-col justify-between max-lg:space-y-10 lg:py-20 py-4 px-2 lg:px-8"
       >
         <div class="flex flex-row justify-between">
-          <div class="lg:w-60 flex flex-row items-center space-x-2">
-            <img
-              class="size-12 lg:size-16 cursor-pointer"
-              :src="`https://img.icons8.com/ios-glyphs/${platformsColor}/linkedin.png`"
-              alt="linkedin"
-              onclick="window.open('https://linkedin.com/in/niklas-vezina', '_blank')"
+          <div class="lg:w-60 flex flex-row items-center gap-4">
+            <Icon
+              name="mdi:linkedin"
+              class="text-5xl lg:text-7xl cursor-pointer"
+              @click="openLink('https://linkedin.com/in/niklas-vezina')"
               title="https://linkedin.com/in/niklas-vezina"
             />
-            <img
-              class="size-12 lg:size-16 cursor-pointer"
-              :src="`https://img.icons8.com/ios-glyphs/${platformsColor}/github.png`"
-              alt="linkedin"
-              onclick="window.open('https://github.com/noava', '_blank')"
+            <Icon
+              name="mdi:github"
+              class="text-5xl lg:text-7xl cursor-pointer"
+              @click="openLink('https://github.com/noava')"
               title="https://github.com/noava"
+            />
+            <Icon
+              name="simple-icons:itchdotio"
+              class="text-5xl lg:text-7xl cursor-pointer"
+              @click="openLink('https://noava.itch.io/')"
+              title="https://noava.itch.io/"
             />
           </div>
           <div class="flex justify-center items-center ps-2">
@@ -65,7 +69,11 @@ import DynamicButton from "./buttons/DynamicButton.vue";
 
 const router = useRouter();
 
-const platformsColor = "e4e2c4";
 const buttonTextColor = "#19191f";
 const buttonBorderColor = "#773438";
+
+function openLink(url: string) {
+  navigator.vibrate(50);
+  window.open(url, "_blank");
+}
 </script>

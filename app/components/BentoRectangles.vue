@@ -10,6 +10,21 @@
         <h1 class="ml-[15vw] 2xl:ml-72">Vezina</h1>
       </div>
     </div>
+
+    <div
+      class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-fit"
+    >
+      <NuxtImg
+        class="w-full h-auto object-cover rounded"
+        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp"
+        @click="
+          imageStore.selectImage(
+            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp'
+          )
+        "
+      />
+    </div>
+
     <div
       class="row-span-3 col-start-3 row-start-4 bg-primary rounded p-2 flex flex-col justify-between"
     >
@@ -116,19 +131,6 @@
     </div>
     <div class="max-lg:hidden col-start-2 row-start-4">
       <!-- empty short -->
-    </div>
-    <div
-      class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-fit"
-    >
-      <NuxtImg
-        class="w-full h-auto object-cover rounded"
-        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp"
-        @click="
-          imageStore.selectImage(
-            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp'
-          )
-        "
-      />
     </div>
 
     <div class="row-span-10 col-start-4 row-start-1 space-y-4">
