@@ -1,5 +1,11 @@
-export default {
+import type { RouterConfig } from '@nuxt/schema'
+
+export default <RouterConfig>{
   scrollBehavior(to, from, savedPosition) {
+    if (to.path === from.path && to.hash === from.hash) {
+      return false
+    }
+
     if (to.hash === '#projects') {
       return {
         el: '#projects',
