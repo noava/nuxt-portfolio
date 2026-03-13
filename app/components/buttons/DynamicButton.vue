@@ -1,11 +1,12 @@
 <template>
   <button
-    @click="openLink"
+    @click="handleClick"
     class="funky-button bg-primary"
     :style="buttonStyles"
     :title="button_link"
   >
     {{ button_text }}
+    <slot />
   </button>
 </template>
 
@@ -18,7 +19,9 @@ const props = defineProps<{
   button_border_color?: string;
 }>();
 
-const openLink = () => {
+const handleClick = () => {
+  navigator.vibrate(50);
+
   if (props.button_link) {
     window.open(props.button_link, "_blank");
   }

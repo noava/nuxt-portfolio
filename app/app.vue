@@ -134,7 +134,7 @@ onMounted(async () => {
   };
 
   document.body.addEventListener("pointerdown", (e) => {
-    const center = { x: e.pageX, y: e.pageY };
+    const center = { x: e.clientX, y: e.clientY };
     createBurst(center);
   });
 });
@@ -157,7 +157,7 @@ onMounted(async () => {
 }
 
 .spark {
-  position: absolute;
+  position: fixed;
   width: 40px;
   height: 40px;
   border-radius: 50%;
