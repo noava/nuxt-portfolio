@@ -1,21 +1,21 @@
 <template>
   <nav
-    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center py-8 px-2 z-50 mx-auto pointer-events-none"
+    class="fixed top-0 left-0 right-0 w-full h-[80px] flex justify-between items-center py-8 px-2 z-50 pointer-events-none"
   >
-    <RouterLink
+    <NuxtLink
       to="/"
       class="text-5xl font-black bg-navbarfooter/50 backdrop-blur rounded-full px-6 py-2 hover:tracking-widest hover:saturate-[300%] pointer-events-auto"
-      >Noava</RouterLink
+      >Noava</NuxtLink
     >
 
     <div
       :class="[
         isMenuOpen ? 'block' : 'hidden',
-        'absolute top-24 right-3 lg:right-0 bg-navbarfooter/50 backdrop-blur w-auto p-4 shadow-lg rounded-lg text-right text-3xl lg:text-4xl space-y-2 lg:space-y-4 pointer-events-auto',
+        'absolute top-24 right-3 lg:right-0 bg-navbarfooter/50 backdrop-blur min-w-72 w-auto p-4 shadow-lg rounded-lg text-right text-3xl lg:text-4xl space-y-2 lg:space-y-4 pointer-events-auto',
       ]"
       @click="closeMenu"
     >
-      <RouterLink
+      <NuxtLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         :to="{ path: '/', hash: '#projects' }"
         >Projects
@@ -23,25 +23,17 @@
           class="align-middle text-3xl lg:text-5xl"
           name="material-symbols:bento-outline"
         />
-      </RouterLink>
-      <!--<RouterLink
+      </NuxtLink>
+      <NuxtLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
-        to="/brandguide"
-        >Brand Guide
-        <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
-          brand_family
-        </span>
-      </RouterLink>-->
-      <RouterLink
-        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
-        to="/3d-scene"
-        >3d Scene
+        to="https://games.noava.dev/"
+        >Games
         <Icon
           class="align-middle text-3xl lg:text-5xl"
           name="material-symbols:3d-rotation-rounded"
         />
-      </RouterLink>
-      <RouterLink
+      </NuxtLink>
+      <NuxtLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="/art-gen"
         >Art Gen.
@@ -49,8 +41,8 @@
           class="align-middle text-3xl lg:text-5xl"
           name="material-symbols:wall-art-outline"
         />
-      </RouterLink>
-      <RouterLink
+      </NuxtLink>
+      <NuxtLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="#contact"
         >Contact
@@ -58,7 +50,7 @@
           class="align-middle text-3xl lg:text-5xl"
           name="material-symbols:deskphone-outline-rounded"
         />
-      </RouterLink>
+      </NuxtLink>
       <div>
         <span class="font-black text-lg lg:text-xl"
           >NORWAY, {{ NORdateHours }}</span
@@ -80,8 +72,9 @@
         />
       </div>
     </div>
-    <div
+    <button
       class="cursor-pointer bg-navbarfooter/50 backdrop-blur rounded-full p-2 hover:saturate-[300%] pointer-events-auto"
+      aria-label="Close navbar menu"
       @click="toggleMenu"
     >
       <Icon
@@ -90,7 +83,7 @@
         class="text-5xl align-middle"
       />
       <Icon v-else name="material-symbols:menu" class="text-5xl align-middle" />
-    </div>
+    </button>
   </nav>
   <div class="fixed inset-0 z-40" v-if="isMenuOpen" @click="closeMenu"></div>
 </template>
@@ -166,7 +159,7 @@ const getWeatherData = async () => {
         headers: {
           "User-Agent": "NoavaPortfolio",
         },
-      }
+      },
     );
 
     if (!response.ok) {

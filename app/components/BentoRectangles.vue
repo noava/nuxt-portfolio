@@ -18,9 +18,9 @@
         class="w-full h-auto object-cover rounded"
         src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp"
         @click="
-          imageStore.selectImage(
-            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp'
-          )
+          imageStore.useImageViewer([
+            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/long_vertical_image.webp',
+          ])
         "
       />
     </div>
@@ -76,9 +76,9 @@
           title="Double click to open fullscreen image"
           @click="drawCard(index)"
           @dblclick="
-            imageStore.selectImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/3-cards.webp'
-            )
+            imageStore.useImageViewer([
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/3-cards.webp',
+            ])
           "
         />
       </div>
@@ -91,9 +91,9 @@
           class="w-full h-auto object-cover rounded"
           src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp"
           @click="
-            imageStore.selectImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp'
-            )
+            imageStore.useImageViewer([
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp',
+            ])
           "
         />
       </div>
@@ -165,11 +165,7 @@
             class="absolute top-10 h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-transform"
             src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
             alt="Poster of Cowboy Bebop I've designed"
-            @click="
-              imageStore.selectImage(
-                'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
-              )
-            "
+            @click="imageStore.useImageViewer(posters)"
           />
           <div class="absolute bottom-4 text-center">
             <p class="text-background/80 italic font-semibold">
@@ -184,7 +180,9 @@
 
 <script setup lang="ts">
 const imageStore = useImageStore();
+const supabase = useSupabaseClient();
 const noava_lines = ref(Array(9).fill(""));
+const posters = ref<string[]>([]);
 const images = ref([
   {
     src: "https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/Song-selected.svg",
@@ -203,11 +201,36 @@ const images = ref([
   },
 ]);
 
+onMounted(async () => {
+  await getPosters();
+});
+
 const drawCard = (index: number) => {
   const selectedImage = images.value.splice(index, 1)[0];
   if (selectedImage) {
     images.value.push(selectedImage);
   }
+};
+
+const getPosters = async () => {
+  const { data, error } = await supabase.storage
+    .from("project_images")
+    .list("Posters", {
+      limit: 100,
+      sortBy: { column: "name", order: "asc" },
+    });
+
+  if (error) {
+    console.error("Error fetching poster images:", error);
+    return;
+  }
+
+  posters.value = data.map(
+    (file) =>
+      supabase.storage
+        .from("project_images")
+        .getPublicUrl(`Posters/${file.name}`).data.publicUrl,
+  );
 };
 </script>
 

@@ -44,13 +44,14 @@
         {{ date }}
       </p>
     </div>
-    <img
-      v-if="image_url"
-      :src="image_url"
+    <NuxtImg
+      v-if="image_urls && image_urls.length > 0"
+      :src="image_urls[0]"
+      loading="lazy"
       :alt="'Image of ' + title"
       class="rounded-2xl m-auto max-lg:w-[90%] w-full lg:max-w-[50%] cursor-pointer"
       :style="{ border: `${image_border} solid 10px` }"
-      @click="imageStore.selectImage(image_url)"
+      @click="imageStore.useImageViewer(image_urls)"
     />
   </div>
 </template>
@@ -70,7 +71,7 @@ const isLoading = ref(true);
 const title = ref("");
 const undertitle = ref("");
 const description = ref("");
-const image_url = ref("");
+const image_urls = ref<string[]>([]);
 const button_text = ref("");
 const date = ref("");
 const button_link = ref("");
@@ -95,7 +96,7 @@ async function getProjects() {
       await supabase
         .from("projects")
         .select(
-          `title, undertitle, description, image_url, date, button_link, button_text, title_color, undertitle_color, description_color, button_text_color, button_bg_color, button_border_color, font, image_border`
+          `title, undertitle, description, image_urls, date, button_link, button_text, title_color, undertitle_color, description_color, button_text_color, button_bg_color, button_border_color, font, image_border`,
         )
         .eq("id", id.value)
         .single();
@@ -106,7 +107,7 @@ async function getProjects() {
       title.value = data.title;
       undertitle.value = data.undertitle;
       description.value = data.description;
-      image_url.value = data.image_url;
+      image_urls.value = Array.isArray(data.image_urls) ? data.image_urls : [];
       date.value = data.date;
       button_link.value = data.button_link;
       button_text.value = data.button_text;
