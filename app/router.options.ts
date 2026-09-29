@@ -6,16 +6,16 @@ export default <RouterConfig>{
       return false
     }
 
-    if (to.hash === '#projects') {
+    if (to.hash) {
       return {
-        el: '#projects',
+        el: to.hash,
         behavior: 'smooth',
-        top: 70 // Adjust this offset if you have a fixed header
+        top: 70
       }
     }
 
     if (to.hash === '#contact' || from.hash === '#contact') {
-      return { savedPosition }
+      return savedPosition || false
     }
     if (savedPosition) {
       return savedPosition
