@@ -12,6 +12,14 @@
     tabindex="-1"
   >
     <button
+      class="absolute top-2 right-2 z-10 cursor-pointer bg-navbarfooter/50 backdrop-blur rounded-full p-2 hover:saturate-[300%] pointer-events-auto"
+      aria-label="Close image viewer"
+      @click.stop="closeModal"
+    >
+      <Icon name="material-symbols:close" class="text-5xl align-middle" />
+    </button>
+    <button
+      v-if="imageStore.images.length > 1"
       class="max-lg:hidden absolute left-20 text-light p-20"
       @click.stop="imageStore.previousImage"
     >
@@ -21,6 +29,7 @@
       :src="imageStore.selectedImage"
       alt="Fullscreen Image"
       class="rounded-2xl max-w-full max-h-full p-2"
+      @click.stop
     />
     <div class="md:hidden flex justify-center absolute bottom-20">
       <span class="mt-4 text-light/60"
@@ -28,6 +37,7 @@
       </span>
     </div>
     <button
+      v-if="imageStore.images.length > 1"
       class="max-lg:hidden absolute right-20 text-light p-20"
       @click.stop="imageStore.nextImage"
     >
